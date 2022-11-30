@@ -2,7 +2,6 @@
 {% block content%}
 
     <!-- using jinjas block content to lookup page layout from a parent (layout.html) / flask template inheritance-->
-    <h1>Home</h1>
 
     {%for post in posts%}
         <h1>{{post.title}}</h1>
