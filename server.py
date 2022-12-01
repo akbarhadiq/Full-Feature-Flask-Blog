@@ -1,5 +1,14 @@
 from flask import Flask, render_template, url_for
+from forms import RegistrationForm, LoginForm
+from load_dotenv import load_dotenv
+import os
+
 app=Flask(__name__)
+
+
+load_dotenv('environ.env')
+secret_key = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] = secret_key
 
 posts = [
     {
@@ -26,6 +35,16 @@ def home():
 @app.route("/about")
 def about():
     return render_template("about.html", title="About")
+
+@app.route("/register")
+def register():
+    form = RegistrationForm()
+    return render_template('register.html', title='Register', form=form)
+
+@app.route("/login")
+def login():
+    form=LoginForm()
+    return render_template('login.html', title='Login', form=form)
 
 # flask auto run when script run:
 if __name__ == "__main__":
